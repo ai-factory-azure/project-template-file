@@ -10,7 +10,7 @@ pool:
 resources:
   repositories:
     - repository: templates-mlops  # Template Repo
-      name: ai-factory/templates-mlops
+      name: AI-Factory/templates-mlops #change!
       type: git
 
 stages:
