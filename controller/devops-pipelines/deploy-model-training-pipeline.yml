@@ -10,13 +10,8 @@ pool:
 resources:
   repositories:
     - repository: templates-mlops  # Template Repo
-      name: ai-factory-azure/templates-mlops
-      endpoint: Github-Service-Endpoint
-      type: github
-    - repository: project-code  # Code Repo
-      name: ai-factory-azure/project-template-file-batch-code
-      endpoint: Github-Service-Endpoint
-      type: github
+      name: ai-factory/templates-mlops
+      type: git
 
 stages:
 - stage: DeployTrainingPipeline
@@ -25,11 +20,9 @@ stages:
     - job: DeployTrainingPipeline
       steps:
       - checkout: self
-        path: s/controller/
+        path: s/
       - checkout: templates-mlops
         path: s/templates/
-      - checkout: project-code
-        path: s/code/
       - template: templates/install-aml-cli.yml@templates-mlops
       - template: templates/connect-to-workspace.yml@templates-mlops
       - template: templates/create-environment.yml@templates-mlops
