@@ -1,0 +1,28 @@
+variables:
+- template: ../controller-config.yml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-20.04
+
+resources:
+  repositories:
+    - repository: templates-mlops  # Template Repo
+      name: AI-Factory/templates-mlops #change!
+      type: git
+
+stages:
+- stage: DeployTrainingPipeline
+  displayName: Deploy Training Pipeline
+  jobs:
+    - job: DeployManagedOnlineEndpoint
+      steps:
+      - checkout: self
+        path: s/
+      - checkout: templates-mlops
+        path: s/templates/
+      - template: templates/install-aml-cli.yml@templates-mlops
+      - template: templates/connect-to-workspace.yml@templates-mlops
+      - template: templates/deploy-managed-online-endpoint.yml
