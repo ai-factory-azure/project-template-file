@@ -2,8 +2,8 @@ variables:
 
 # Workspace settings
   ml_workspace_connection: Azure-ARM-Dev
-  ml_workspace_name: mnistws
-  ml_workspace_rg: mnist
+  ml_workspace_name: main
+  ml_workspace_rg: azureml-examples-rg
 
 # Dataset settings
   dataset_name: mnist-tiny
