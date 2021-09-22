@@ -23,6 +23,6 @@ stages:
         path: s/
       - checkout: templates-mlops
         path: s/templates/
-      - template: templates/install-aml-cli.yml@templates-mlops
-      - template: templates/connect-to-workspace.yml@templates-mlops
+      - template: templates/install-aml-cli-v2.yml@templates-mlops
+      - template: templates/connect-to-workspace-v2.yml@templates-mlops
       - template: templates/deploy-managed-online-endpoint.yml@templates-mlops
