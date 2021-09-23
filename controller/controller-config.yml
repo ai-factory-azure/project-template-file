@@ -67,4 +67,3 @@ variables:
 
   # Managed Online Endpoint Settings
   endpoint_name: testEndpoint1  #no spaces or _ allowed; only lowercase, caps, and -
-  scoring_script: score.py
