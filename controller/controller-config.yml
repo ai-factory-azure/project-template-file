@@ -66,4 +66,5 @@ variables:
   batch_node_count: 1
 
   # Managed Online Endpoint Settings
-  ENDPOINT_NAME: moeTest1  #no spaces or _ allowed; only lowercase, caps, and -
+  endpoint_name: testEndpoint1  #no spaces or _ allowed; only lowercase, caps, and -
+  scoring_script: score.py
