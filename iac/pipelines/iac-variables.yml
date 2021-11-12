@@ -2,19 +2,19 @@
 variables:
   # Base name used for naming all the infrastructure resources
   - name: BASE_NAME
-    value: mnist
+    value: mnist200
   # Location for resource provisioning
   - name: LOCATION
     value: westeurope
   # Workspace name for the project
   - name: WORKSPACE_NAME
-    value: mnistws
+    value: mnistws200
   # Workspace SKU
   - name: WORKSPACE_SKU
     value: basic
   # Resource group
   - name: RESOURCE_GROUP
-    value: mnist
+    value: mnist200
   # Resource Manager Service Connection
   - name: AZURE_RM_SVC_CONNECTION
     value: Azure-ARM-Dev
