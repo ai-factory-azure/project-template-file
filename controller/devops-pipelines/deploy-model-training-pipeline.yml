@@ -30,12 +30,12 @@ stages:
         parameters:
           environment_name: $(training_environment_name)
           environment_conda_yaml: $(training_environment_conda_yaml)
-      # - template: templates/register-dataset.yml@templates-mlops
-      #   parameters:
-      #     dataset_name: $(dataset_name)
-      #     dataset_description: $(dataset_description)
-      #     dataset_local_path: $(dataset_local_path)
-      #     dataset_path_on_datastore: $(dataset_path_on_datastore)
+      - template: templates/register-dataset.yml@templates-mlops
+        parameters:
+          dataset_name: $(dataset_name)
+          dataset_description: $(dataset_description)
+          dataset_local_path: $(dataset_local_path)
+          dataset_path_on_datastore: $(dataset_path_on_datastore)
       - template: templates/get-compute.yml@templates-mlops
         parameters:
           compute_type: training
