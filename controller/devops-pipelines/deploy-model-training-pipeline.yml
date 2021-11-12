@@ -23,8 +23,8 @@ stages:
         path: s/
       - checkout: templates-mlops
         path: s/templates/
-      - template: templates/install-aml-cli.yml@templates-mlops
-      - template: templates/connect-to-workspace.yml@templates-mlops
+      - template: templates/install-aml-cli.yml-v2@templates-mlops
+      - template: templates/connect-to-workspace-v2.yml@templates-mlops
       - template: templates/create-environment.yml@templates-mlops
         parameters:
           environment_name: $(training_environment_name)
