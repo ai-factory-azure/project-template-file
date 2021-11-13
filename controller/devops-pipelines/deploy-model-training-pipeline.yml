@@ -26,7 +26,6 @@ stages:
       - template: templates/install-az-cli.yml@templates-mlops
       - template: templates/install-aml-cli.yml@templates-mlops
       - template: templates/connect-to-workspace.yml@templates-mlops
-      - template: templates/dotnet-install.yml@templates-mlops
       - template: templates/create-environment.yml@templates-mlops
         parameters:
           environment_name: $(training_environment_name)
