@@ -10,6 +10,8 @@ variables:
   dataset_description: mnist
   dataset_local_path: code/data/
   dataset_path_on_datastore: data/
+  dataset_type: cloud
+  dataset_storage_url: 'https://azureaidemostorage.blob.core.windows.net/demo'
 
 # Training pipeline settings
 
