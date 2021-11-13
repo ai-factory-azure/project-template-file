@@ -16,6 +16,7 @@ def main():
     args = parse_args()
 
     print(args.data_path)
+    os.listdir(os.getcwd())
 
     # Make sure model output path exists
     if not os.path.exists(args.model_path):
