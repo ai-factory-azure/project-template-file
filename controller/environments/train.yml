@@ -1,4 +1,4 @@
-name: mnist-train
+name: mnist-training
 channels:
   - defaults
   - anaconda
