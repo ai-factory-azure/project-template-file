@@ -16,7 +16,7 @@ variables:
 # Training pipeline settings
 
   # Training AzureML Environment name
-  training_environment_name: mnist-training
+  training_environment_name: mnist-train
 
   # Training AzureML Environment conda yaml
   training_environment_conda_yaml: controller/environments/train.yml
