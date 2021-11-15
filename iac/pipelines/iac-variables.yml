@@ -2,7 +2,7 @@
 variables:
   # Base name used for naming all the infrastructure resources
   - name: BASE_NAME
-    value: mnistsample
+    value: mnistws
   # Location for resource provisioning
   - name: LOCATION
     value: westeurope
