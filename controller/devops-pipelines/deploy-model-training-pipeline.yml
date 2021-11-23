@@ -10,7 +10,7 @@ pool:
 resources:
   repositories:
     - repository: templates-mlops  # Template Repo
-      name: ai-factory/templates-mlops #change!
+      name: multi-repo-ai-factory/templates-mlops #change!
       type: git
 
 stages:
@@ -31,9 +31,11 @@ stages:
           environment_name: $(training_environment_name)
           environment_conda_yaml: $(training_environment_conda_yaml)
       - template: templates/register-dataset.yml@templates-mlops
+        parameters:
+          data_type: training
       - template: templates/get-compute.yml@templates-mlops
         parameters:
           compute_type: training
       - template: templates/deploy-training-pipeline.yml@templates-mlops
-      # - template: templates/run-pipeline.yml@templates-mlops
       - template: templates/add-pipeline-to-endpoint.yml@templates-mlops
+      - template: templates/run-pipeline.yml@templates-mlops

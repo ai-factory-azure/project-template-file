@@ -10,9 +10,8 @@ pool:
 resources:
   repositories:
     - repository: templates-mlops  # Template Repo
-      name: ai-factory-azure/templates-mlops
-      endpoint: ai-factory-azure
-      type: github
+      name: multi-repo-ai-factory/templates-mlops
+      type: git
 
 stages:
 - stage: DeployBatchScoringPipeline
@@ -24,12 +23,16 @@ stages:
         path: s/
       - checkout: templates-mlops
         path: s/templates/
+      - template: templates/install-az-cli.yml@templates-mlops        
       - template: templates/install-aml-cli.yml@templates-mlops
       - template: templates/connect-to-workspace.yml@templates-mlops
       - template: templates/create-environment.yml@templates-mlops
         parameters:
           environment_name: $(batch_environment_name)
           environment_conda_yaml: $(batch_environment_conda_yaml)
+      - template: templates/register-dataset.yml@templates-mlops
+        parameters:
+          data_type: scoring
       - template: templates/deploy-batch-scoring-pipeline.yml@templates-mlops
-      - template: templates/run-pipeline.yml@templates-mlops
       - template: templates/add-pipeline-to-endpoint.yml@templates-mlops
+      - template: templates/run-pipeline.yml@templates-mlops

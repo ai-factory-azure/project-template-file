@@ -2,16 +2,24 @@ variables:
 
 # Workspace settings
   ml_workspace_connection: Azure-ARM-Dev
-  ml_workspace_name: mnistsamplews
+  ml_workspace_name: mnistws
   ml_workspace_rg: mnist
 
-# Dataset settings
-  dataset_name: mnist-tiny
-  dataset_description: mnist
-  dataset_local_path: code/data/
-  dataset_path_on_datastore: data/
-  dataset_type: cloud
-  dataset_storage_url: 'https://azureaidemostorage.blob.core.windows.net/demo/data/'
+# Training Dataset settings
+  training_dataset_name: mnist-tiny
+  training_dataset_description: mnist
+  training_dataset_local_path: code/data/train
+  training_dataset_path_on_datastore: data/
+  training_dataset_type: cloud
+  training_dataset_storage_url: 'https://azureaidemostorage.blob.core.windows.net/data/train/'
+
+# Scoring Dataset settings
+  scoring_dataset_name: mnist-batch-input
+  scoring_dataset_description: mnist
+  scoring_dataset_local_path: code/data/batch
+  scoring_dataset_path_on_datastore: data/
+  scoring_dataset_type: cloud
+  scoring_dataset_storage_url: 'https://azureaidemostorage.blob.core.windows.net/data/score/'
 
 # Training pipeline settings
 
