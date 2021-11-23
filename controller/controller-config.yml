@@ -74,6 +74,3 @@ variables:
   batch_error_threshold: 1
   batch_process_count_per_node: 1
   batch_node_count: 1
-
-  # Managed Online Endpoint Settings
-  endpoint_name: testEndpoint2  #no spaces or _ allowed; only lowercase, caps, and -
