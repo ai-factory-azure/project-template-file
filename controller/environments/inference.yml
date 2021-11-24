@@ -13,4 +13,3 @@ dependencies:
     - azureml-contrib-services
     - inference-schema
     - fastai==1.0.61
-    - joblib

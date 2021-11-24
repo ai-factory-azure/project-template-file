@@ -1,35 +1,41 @@
 import os
-import logging
+import io
+import glob
 import json
-import numpy
-import joblib
+import fastai.vision as vis
+from fastai.vision import load_learner, open_image
 
+from azureml.contrib.services.aml_request import AMLRequest, rawhttp
+from azureml.contrib.services.aml_response import AMLResponse
 
 def init():
-    """
-    This function is called when the container is initialized/started, typically after create/update of the deployment.
-    You can write the logic here to perform init operations like caching the model in memory
-    """
     global model
-    # AZUREML_MODEL_DIR is an environment variable created during deployment.
-    # It is the path to the model folder (./azureml-models/$MODEL_NAME/$VERSION)
-    model_path = os.path.join(
-        os.getenv("AZUREML_MODEL_DIR"), "outputs/model.pkl"
-    )
-    # deserialize the model file back into a sklearn model
-    model = joblib.load(model_path)
-    logging.info("Init complete")
+    print(f"Model directory {os.getenv('AZUREML_MODEL_DIR')}")
+    print(f"Model directory contents: {glob.glob(os.getenv('AZUREML_MODEL_DIR') + '/**')}")
+    model = load_learner(path=os.getenv('AZUREML_MODEL_DIR'), file='outputs/model.pkl')
 
+@rawhttp
+def run(request):
+    if request.method == 'POST':
+        body = request.get_data(False)
+        response = score(body)
+        return AMLResponse(json.dumps(response, indent=2), 200)
+    else: 
+        return AMLResponse(f"HTTP {request.method} is not supported", 405)
+   
+def score(data):
+    image = open_image(io.BytesIO(data), convert_mode='L')
+    prediction = model.predict(image)
+    result = {
+        'probabilties': prediction[2].numpy().tolist()
+    }
+    return result
 
-def run(raw_data):
-    """
-    This function is called for every invocation of the endpoint to perform the actual scoring/prediction.
-    In the example we extract the data from the json input and call the scikit-learn model's predict()
-    method and return the result back
-    """
-    logging.info("Request received")
-    data = json.loads(raw_data)["data"]
-    data = numpy.array(data)
-    result = model.predict(data)
-    logging.info("Request processed")
-    return result.tolist()
+# For local testing
+if __name__ == "__main__":
+    global model
+    model = load_learner(path='outputs', file='model.pkl')
+    f = open('mnist_tiny/valid/3/76.png', 'rb').read()
+    response = score(f)
+    print(response)
+    json.dumps(response, indent=2)
