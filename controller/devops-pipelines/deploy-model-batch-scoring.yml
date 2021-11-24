@@ -15,7 +15,7 @@ pool:
 resources:
   repositories:
     - repository: templates-mlops  # Template Repo
-      name: multi-repo-ai-factory/templates-mlops
+      name: ai-factory/templates-mlops
       type: git
 
 stages:
