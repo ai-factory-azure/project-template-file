@@ -74,3 +74,34 @@ variables:
   batch_error_threshold: 1
   batch_process_count_per_node: 1
   batch_node_count: 1
+
+# Real-time deployment settings
+
+  # Inference AzureML Environment name
+  inference_environment_name: mnist-inference
+
+  # Inference AzureML Environment conda yaml
+  inference_environment_conda_yaml: controller/environments/inference.yml
+
+  # Deployment target for model (must be an in-AzureML existing AKS cluster)
+  inference_aks_target: aks-mnist
+
+  # Deployment replica scale
+  inference_autoscale_min_replicas: 1
+  inference_autoscale_max_replicas: 3
+
+  # Deployment resources per replica
+  inference_cpu_cores_per_replica: 1
+  inference_memory_gb_per_replica: 0.5
+
+  # Collect model telemetry using App Insights
+  inference_enable_app_insights: True
+
+  # Enable model data collection
+  inference_collect_model_data: True
+
+  # Script to run for inference, comes from src/ inside code repo
+  inference_script: score.py
+
+  # Name of the model endpoint deployment
+  inference_deployment_name: mnist-deployment
