@@ -5,16 +5,14 @@ trigger:
       - main
   paths:
     include:
-      - arm-templates/*
-      - pipelines/*
+      - iac/
 pr:
   branches:
     include:
       - main
   paths:
     include:
-      - arm-templates/*
-      - pipelines/*
+      - iac/
 
 pool:
   vmImage: "ubuntu-latest"
