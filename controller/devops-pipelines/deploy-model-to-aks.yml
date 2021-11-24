@@ -2,7 +2,12 @@ variables:
 - template: ../controller-config.yml
 
 trigger:
-- main
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - controller/devops-pipelines/deploy-model-to-aks.yml
 
 pool:
   vmImage: ubuntu-20.04
