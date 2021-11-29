@@ -35,9 +35,6 @@ def main():
     # Train and fit the Learner model, set output path to args.model_path
     learner = vis.cnn_learner(data, vis.models.resnet18, metrics=vis.accuracy, path=args.model_path)
 
-    # Enable auto logging
-    mlflow.fastai.autolog()
-
     # Train and fit with default or supplied command line arguments
     learner.fit(args.epochs, 0.01)
     
